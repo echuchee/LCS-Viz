@@ -1,0 +1,155 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="p5.js"></script>
+  <!-- uncomment lines below to include extra p5 libraries -->
+	<script language="javascript" src="p5.dom.js"></script>
+  <!--<script language="javascript" src="../addons/p5.sound.js"></script>-->
+  <script language="javascript" type="text/javascript" src="lcsketch.js"></script>
+  <!-- this line removes any default padding and style. you might only need one of these values set. -->
+  
+  <!--#defaultCanvas {position: absolute;left: 50%;top: 50%;margin-left: -512px;margin-top: -384px} -->
+  <style> 
+  
+  body {padding: 0; margin: 0;text-align: center} 
+  #defaultCanvas {position: absolute;left: 30px;top: 30px;z-index: 1}
+  #fwd {position: absolute;z-index:2;min-width:60px}
+  #bkwd {position: absolute;z-index:2;min-width:60px}
+  #spBtn {z-index:2;min-width:140px}
+  #teamDD1 {position: absolute; left:36px;top: 370px;z-index:2;max-width:54px}
+  #teamDD2 {position: absolute; left:108px;top: 370px;z-index:2;max-width:54px}
+  #team2DD1 {position: absolute; left:36px;top: 370px;z-index:-2;max-width:54px}
+  #team2DD2 {position: absolute; left:108px;top: 370px;z-index:-2;max-width:54px}
+  #regionDD{position: absolute; left:101px;top:320px;z-index:2;min-width:74px}
+  #regionDD2{position: absolute; left:101px;top:320px;z-index:-2;min-width:74px}
+  #player {position:absolute;left:592px;top:148px;z-index:2}
+  #champInput {z-index: 2;width: 100 px;height :22px;max-width:140px}
+  #minNumInput {z-index : -2;width : 105 px;height:22px;max-width:115px}
+  #minDayInput {z-index : -2;width : 105 px;height:22px;max-width:115px}
+  #maxDayInput {z-index : -2;width : 105 px;height:22px;max-width:115px}
+  #clrBtn {z-index: 2;min-width:140px}
+  #modeDD {position:absolute; left:35px;top:140px;z-index: 2;min-width: 140px}
+  #desc {position:absolute;left : 35px;top:710px}
+  #roleDD {position:absolute;top:370px;left: 36px; min-width:140px;z-index:-2}
+  </style>
+</head>
+<!--<button type="button">click me!</button> -->
+<body>
+  <div id = "desc">
+  <p align = left> Adam "Echuchee" Perez's Work<br>Entire site is a WIP. Need to upload past works and finish completing this LCS data project<br>Hand Collected Data : <a href= "https://docs.google.com/spreadsheets/d/1Uv_i68YeuoACZySXEAR-Mziy3r2nZXA4yCVVR8oqDRw/edit#gid=1309510543">Data </a><br><a href= "http://www.prism.gatech.edu/~aperez42/Computer%20Audio%20Homeworks/Final%20Draft.html">Final Audio Project(Have to move to this new site) </a><br>Contact : echuchee@gmail.com </p>
+  </div>
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W8GWZR"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W8GWZR');</script>
+<!-- End Google Tag Manager -->
+  <select id="teamDD1">
+    <option value="ALL">All</option>
+    <option value="FNC">FNC</option>
+    <option value="OG">OG</option>
+    <option value="H2K">H2K</option>
+    <option value="UOL">UOL</option>
+    <option value="ROC">ROC</option>
+    <option value="GIA">GIA</option>
+    <option value="GMB">GMB</option>
+    <option value="EL">EL</option>
+    <option value="SK">SK</option>
+    <option value="CW">CW</option>
+  </select>
+  <select id="teamDD2">
+    <option value="ALL">All</option>
+    <option value="FNC">FNC</option>
+    <option value="OG">OG</option>
+    <option value="H2K">H2K</option>
+    <option value="UOL">UOL</option>
+    <option value="ROC">ROC</option>
+    <option value="GIA">GIA</option>
+    <option value="GMB">GMB</option>
+    <option value="EL">EL</option>
+    <option value="SK">SK</option>
+    <option value="CW">CW</option>
+  </select>
+  <select id="team2DD1">
+    <option value="ALL">All</option>
+    <option value="TL">TL</option>
+    <option value="CLG">CLG</option>
+    <option value="TIP">TIP</option>
+    <option value="GV">GV</option>
+    <option value="TSM">TSM</option>
+    <option value="DIG">DIG</option>
+    <option value="C9">C9</option>
+    <option value="T8">T8</option>
+    <option value="NME">NME</option>
+    <option value="TDK">TDK</option>
+  </select>
+  <select id="team2DD2">
+    <option value="ALL">All</option>
+    <option value="TL">TL</option>
+    <option value="CLG">CLG</option>
+    <option value="TIP">TIP</option>
+    <option value="GV">GV</option>
+    <option value="TSM">TSM</option>
+    <option value="DIG">DIG</option>
+    <option value="C9">C9</option>
+    <option value="T8">T8</option>
+    <option value="NME">NME</option>
+    <option value="TDK">TDK</option>
+  </select>
+  <select id="regionDD">
+      <option value="NA">NA</option>
+      <option value="EU">EU</option>
+  </select>
+    <select id="roleDD">
+      <option value="ALL">ALL</option>
+      <option value="Top">Top</option>
+      <option value="Jungle">Jungle</option>
+      <option value="Mid">Mid</option>
+      <option value="ADC">ADC</option>
+      <option value="Support">Support</option>
+  </select>
+   <select id="regionDD2">
+      <option value ="ALL">ALL</option>
+      <option value="NA">NA</option>
+      <option value="EU">EU</option>
+  </select>
+  <select id="modeDD">
+      <option value="0">Game Lookup</option>
+      <option value="1">Pick/Ban</option>
+      <option value="2">Team Stats</option>
+  </select>
+</div>
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '226',
+          width: '384',// 320,180
+          videoId: '_5ZfxTmeM0A', ///first lcs game
+          events: {
+            //'onReady': onPlayerReady,
+            //'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+    </script>
+
+</body>
+
+</html>
